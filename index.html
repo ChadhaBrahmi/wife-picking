@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كيف تحصل على زوجة في 3 خطوات</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #694cd1;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        #start, #questions, #popup {
+            margin-top: 20px;
+            width: 90%;
+            max-width: 400px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        #popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 90%;
+        }
+        #popup img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>كيف تحصل على زوجة في 3 خطوات</h1>
+    <button id="start">ابدأ</button>
+    
+    <div id="questions" style="display: none;">
+        <p>هل ستطبخ لها؟</p>
+        <button onclick="nextQuestion()">نعم</button>
+        <button onclick="nextQuestion()">لا</button>
+        
+        <p style="display: none;">هل أنت غني؟</p>
+        <button style="display: none;" onclick="nextQuestion()">نعم</button>
+        <button style="display: none;" onclick="nextQuestion()">لا</button>
+        
+        <p style="display: none;">هل ستظل تحبها حتى لو أصبحت دودة؟</p>
+        <button style="display: none;" onclick="showPopup()">نعم</button>
+        <button style="display: none;" onclick="showPopup()">لا</button>
+    </div>
+    
+    <div id="popup">
+        <p>تهانينا! هذه زوجتك!</p>
+        <img src="fatwoman.jpg" alt="زوجتك">
+        <br><br>
+        <button onclick="closePopup()">إغلاق</button>
+    </div>
+    
+    <script>
+        let currentQuestion = 0;
+        function nextQuestion() {
+            let questions = document.querySelectorAll("#questions p");
+            let buttons = document.querySelectorAll("#questions button");
+            questions[currentQuestion].style.display = "none";
+            buttons[currentQuestion * 2].style.display = "none";
+            buttons[currentQuestion * 2 + 1].style.display = "none";
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                questions[currentQuestion].style.display = "block";
+                buttons[currentQuestion * 2].style.display = "inline-block";
+                buttons[currentQuestion * 2 + 1].style.display = "inline-block";
+            }
+        }
+        function showPopup() {
+            document.getElementById("popup").style.display = "block";
+        }
+        function closePopup() {
+            document.getElementById("popup").style.display = "none";
+        }
+        document.getElementById("start").onclick = function() {
+            document.getElementById("start").style.display = "none";
+            document.getElementById("questions").style.display = "block";
+        };
+    </script>
+</body>
+</html>
